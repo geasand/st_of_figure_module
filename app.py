@@ -78,8 +78,8 @@ if 'pares' not in st.session_state:
 
 st.subheader("Entrada de Ángulos")
 col1, col2 = st.columns(2)
-alfa = col1.number_input("Alfa (α)", value=0, step=1 format="%d", min_value=0.0)
-beta = col2.number_input("Beta (β)", value=0, step=1 format="%d", min_value=0.0)
+alfa = col1.number_input("Alfa (α)", value=0, step=1, format="%d", min_value=0.0)
+beta = col2.number_input("Beta (β)", value=0, step=1, format="%d", min_value=0.0)
 
 if st.button("Añadir Par"):
     if alfa > 0 and beta > 0:
