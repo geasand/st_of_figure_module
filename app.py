@@ -57,8 +57,8 @@ with st.sidebar:
     st.header("Configuración de Red")
     l = st.number_input("l (Líneas totales)", value=0, step=1)
     lp = st.number_input("l' (Líneas Visadas 2-dir)", value=0, step=1)
-    s = st.number_input("s (Estaciones)", value=0, step=1)
-    sp = st.number_input("s' (Est. Visadas)", value=0, step=1)
+    s = st.number_input("s (Estaciones totales)", value=0, step=1)
+    sp = st.number_input("s' (Est. Ocupadas)", value=0, step=1)
 
     # Botón para limpiar datos
     if st.button("Limpiar lista de ángulos"):
@@ -78,8 +78,8 @@ if 'pares' not in st.session_state:
 
 st.subheader("Entrada de Ángulos")
 col1, col2 = st.columns(2)
-alfa = col1.number_input("Alfa (α)", format="%.2f", min_value=0.0)
-beta = col2.number_input("Beta (β)", format="%.2f", min_value=0.0)
+alfa = col1.number_input("Alfa (α)", value=0, step=1 format="%d", min_value=0.0)
+beta = col2.number_input("Beta (β)", value=0, step=1 format="%d", min_value=0.0)
 
 if st.button("Añadir Par"):
     if alfa > 0 and beta > 0:
@@ -128,7 +128,7 @@ if st.button("Calcular Rigidez Total"):
                 })
 
             # Mostrar éxito en la interfaz
-            st.success(f"### Análisis Completado: R = {r_total}")
+            st.success(f"### Análisis Completado: Rigidez = {r_total}")
 
             # Crear DataFrame y mostrarlo
             df_res = pd.DataFrame(resultados)
@@ -141,9 +141,9 @@ if st.button("Calcular Rigidez Total"):
             csv = df_res.to_csv(index=False, sep=';', encoding='utf-8-sig').encode('utf-8-sig')
 
             st.download_button(
-                label="📥 Descargar Reporte Técnico Completo (CSV)",
+                label="📥 Descargar Archivo (CSV)",
                 data=csv,
-                file_name="Reporte_Validacion_Rigidez.csv",
+                file_name="Reporte_Rigidez.csv",
                 mime="text/csv",
             )
 
